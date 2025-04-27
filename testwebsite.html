@@ -5,42 +5,73 @@
   <title>Mein Dashboard</title>
   <style>
     body {
-      background-color: #2C2C2C;
-      color: white;
-      font-family: 'Open Sans', sans-serif;
-      text-align: center;
       margin: 0;
-      padding: 0;
+      background-color: #1e1e1e;
+      color: #ffffff;
+      font-family: 'Segoe UI', 'Open Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .clock {
+      font-size: 80px;
+      margin-top: 20px;
+    }
+    .date {
+      font-size: 30px;
+      margin-bottom: 40px;
     }
     .section {
-      margin: 20px;
+      width: 90%;
+      background: #2c2c2c;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    }
+    iframe {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #00aaff;
     }
   </style>
 </head>
 <body>
+
+  <div class="clock" id="clock">14:32</div>
+  <div class="date" id="date">Samstag, 27. April 2025</div>
+
   <div class="section">
-    <h1 id="clock">14:32</h1>
-    <p id="date">Samstag, 27. April 2025</p>
-  </div>
-  <div class="section">
-    <iframe src="https://calendar.google.com/calendar/embed?src=deutscher%40kalender.google.com&ctz=Europe%2FBerlin" style="border: 0" width="80%" height="300" frameborder="0" scrolling="no"></iframe>
-  </div>
-  <div class="section">
-    <iframe src="https://www.wetter.de/deutschland/wetter-berlin-18228282.html" style="border:0; width:80%; height:200px;" frameborder="0"></iframe>
-  </div>
-  <div class="section">
-    <iframe src="https://www.tagesschau.de" style="border:0; width:80%; height:200px;" frameborder="0"></iframe>
+    <h2>Mein Kalender</h2>
+    <iframe src="https://calendar.google.com/calendar/embed?src=deutscher%40kalender.google.com&ctz=Europe%2FBerlin" style="height:400px;"></iframe>
   </div>
 
-  <script>
-    function updateClock() {
-      const now = new Date();
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      document.getElementById('clock').innerText = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-      document.getElementById('date').innerText = now.toLocaleDateString('de-DE', options);
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-  </script>
+  <div class="section">
+    <h2>Wetter</h2>
+    <iframe src="https://forecast7.com/de/53d5510d00/hamburg/" style="height:250px;"></iframe>
+  </div>
+
+  <div class="section">
+    <h2>News</h2>
+    <iframe src="https://www.tagesschau.de" style="height:300px;"></iframe>
+  </div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('clock').innerText = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+    document.getElementById('date').innerText = now.toLocaleDateString('de-DE', options);
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>
+
 </body>
 </html>
